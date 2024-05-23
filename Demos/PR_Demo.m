@@ -141,7 +141,7 @@ if isequal(lower(measurement_method),'fourier')
     end
     HIO_iters=1e3;
     x_hat_HIO=HIO( y, M_square, Minv_square, support(:), beta,HIO_iters,x_init_best );
-    t_HIO=toc(t0)
+    t_HIO=toc(t0);
     x_hat_HIO = OversampM'*real(x_hat_HIO(:));
 end
 
@@ -184,7 +184,7 @@ if alpha<50
     prox_opts.sigma_hat=10;
     [x_hat_prDeep,outs_final4]  = prDeep( M,Mt_asym,y,x_hat_prDeep(:),fasta_opts,prox_opts);
 end
-t_prDeep_Amplitude=toc(t0)
+t_prDeep_Amplitude=toc(t0);
 x_hat_prDeep = real(reshape(x_hat_prDeep,[height,width]));
 x_hat_prDeep = disambig2Drfft(x_hat_prDeep,x_0,sqrt(n),sqrt(n));
 if fasta_opts.recordObjective
